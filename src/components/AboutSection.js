@@ -1,30 +1,46 @@
 import React from 'react';
+// Framer Motion
+import { motion } from 'framer-motion';
+import { titleAnim, fade, photoAnim } from '../animation';
+// Styles
+import { StyleAbout, StyleDescription, StyleImage, StyleHide } from '../styles';
+
+import home1 from '../img/home1.png';
+import Wave from './Wave'
 
 const AboutSection = () => {
   return (
-    <div>
-      <div className='description'>
-        <div className='title'>
-          <div className='hide'>
-            <h2>We work to make</h2>
-          </div>
-          <div className='hide'>
-            <h2>
+    <StyleAbout>
+      <StyleDescription>
+        <motion.div className='title'>
+          <StyleHide>
+            <motion.h2 variant={titleAnim}>We work to make</motion.h2>
+          </StyleHide>
+          <StyleHide>
+            <motion.h2 variant={titleAnim}>
               your <span>dreams</span> come
-            </h2>
-          </div>
-          <div className='hide'>
-            <h2>true.</h2>
-          </div>
-        </div>
-        <p>Giving a great description</p>
-        <button>Get in touch</button>
-      </div>
-      <div className='image'>
-        <img src='' alt='image description'></img>
-      </div>
-    </div>
+            </motion.h2>
+          </StyleHide>
+          <StyleHide>
+            <motion.h2 variant={titleAnim}>true.</motion.h2>
+          </StyleHide>
+        </motion.div>
+        <motion.p variant={fade}>
+          Contact us for any creative job you need. We have professionals that
+          will make your wild dreams come true.
+        </motion.p>
+        <motion.button variant={fade}>Get in touch</motion.button>
+      </StyleDescription>
+      <StyleImage>
+        <motion.img
+          variants={photoAnim}
+          src={home1}
+          alt='Man with a camera'
+        ></motion.img>
+      </StyleImage>
+      <Wave />
+    </StyleAbout>
   );
-}
+};
 
 export default AboutSection;

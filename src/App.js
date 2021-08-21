@@ -1,11 +1,40 @@
 import React from 'react';
+// Global Styles
+import GlobalStyle from './components/GlobalStyle';
+// Import Pages
+import Nav from './components/Nav';
+import AboutUs from './pages/AboutUs';
+import OurWork from './pages/OurWork';
+import ContactUs from './pages/ContactUs';
+import MovieDetail from './pages/MovieDetail';
+// Router
+import { Switch, Route, useLocation } from 'react-router-dom';
+// Animation
+import { AnimatePresence } from 'framer-motion'; /* detects de presence when it leaves*/
 
-import AboutUs from './pages/AboutUs'
+function App () {
+  const location = useLocation();
 
-function App() {
   return (
-    <div className="App">
-      <AboutUs />
+    <div className='App'>
+      <GlobalStyle />
+      <Nav />
+      <AnimatePresence exitBeforeEnter>
+        <Switch location={location} key={location.pathname}>
+          <Route path='/' exact>
+            <AboutUs />
+          </Route>
+          <Route path='/work' exact>
+            <OurWork />
+          </Route>
+          <Route path='/work/:id'>
+            <MovieDetail />
+          </Route>
+          <Route path='/contact'>
+            <ContactUs />
+          </Route>
+        </Switch>
+      </AnimatePresence>
     </div>
   );
 }
